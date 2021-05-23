@@ -13,6 +13,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
   final _descriptionFocusNode = FocusNode();
   final _imageUrlController = TextEditingController();
   final _imageUrlFocusNode = FocusNode();
+  final _form = GlobalKey<FormState>();
 
   void _saveForm() {}
 
@@ -40,6 +41,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Form(
+          key: _form,
           child: ListView(
             children: [
               TextFormField(
