@@ -30,6 +30,8 @@ class Auth with ChangeNotifier {
     return _userId;
   }
 
+  // USE FIREBASE SDK //
+
   Future<void> _authenticate(
       String email, String password, String urlSegment) async {
     try {
@@ -98,7 +100,7 @@ class Auth with ChangeNotifier {
     return _authenticate(email, password, 'signInWithPassword');
   }
 
-  void logout() {
+  void logout() async {
     _token = null;
     _userId = null;
     _expiryDate = null;
@@ -107,6 +109,9 @@ class Auth with ChangeNotifier {
       _authTimer = null;
     }
     notifyListeners();
+    final prefs = await SharedPreferences.getInstance();
+    // prefs.remove('userData');
+    prefs.clear();
   }
 
   void _autoLogout() {
